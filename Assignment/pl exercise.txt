@@ -1,0 +1,28 @@
+1. Write a program that computes the perimeter and the area of a rectangle. Define 
+your own values for the length and width. (Assuming that L and W are the length 
+and width of the rectangle, Perimeter = 2*(L+W) and Area = L*W. 
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE PROCEDURE rectangle_calc()
+    -> BEGIN
+    ->     DECLARE L INT DEFAULT 10;
+    ->     DECLARE W INT DEFAULT 5;
+    ->     DECLARE Perimeter INT;
+    ->     DECLARE Area INT;
+    ->
+    ->     SET Perimeter = 2 * (L + W);
+    ->     SET Area = L * W;
+    ->
+    ->     SELECT L AS Length, W AS Width, Perimeter, Area;
+    -> END //
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> call rectangle_calc();
++--------+-------+-----------+------+
+| Length | Width | Perimeter | Area |
++--------+-------+-----------+------+
+|     10 |     5 |        30 |   50 |
++--------+-------+-----------+------+

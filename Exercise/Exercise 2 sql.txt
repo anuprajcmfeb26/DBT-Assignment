@@ -1,0 +1,96 @@
+1. Display the Supplier table in the descending order of CITY.   
+
+mysql> SELECT *
+    -> FROM S
+    -> ORDER BY CITY DESC;
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S1   | Smith |     20 | London |
+| S4   | Clark |     20 | London |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+2. Display the Part Table in the ascending order of CITY and within the city in 
+the ascending order of Part names.
+
+mysql> SELECT *
+    -> FROM P
+    -> ORDER BY CITY ASC, PNAME ASC;
++------+-------+-------+--------+--------+
+| Pno  | PNAME | COLOR | WEIGHT | CITY   |
++------+-------+-------+--------+--------+
+| P4   | Cam   | Red   |     12 | Athens |
+| P5   | Cog   | Blue  |     19 | London |
+| P1   | Nut   | Red   |     12 | London |
+| P3   | Screw | Blue  |     14 | London |
+| P2   | Bolt  | Green |     17 | Paris  |
++------+-------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+3. Display all the Suppliers with a status between 10 and 20.   
+
+mysql> SELECT *
+    -> FROM S
+    -> WHERE STATUS BETWEEN 10 AND 20;
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S2   | Jones |     10 | Paris  |
+| S4   | Clark |     20 | London |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+4. Display all the Parts and their Weight, which are not in the range of 10 and 15.
+
+mysql> SELECT PNAME, WEIGHT
+    -> FROM P
+    -> WHERE WEIGHT NOT BETWEEN 10 AND 15;
++-------+--------+
+| PNAME | WEIGHT |
++-------+--------+
+| Bolt  |     17 |
+| Cog   |     19 |
++-------+--------+
+2 rows in set (0.00 sec)
+
+5. Display all the Part names starting with the letter ‘S’.  
+
+mysql> SELECT *
+    -> FROM P
+    -> WHERE PNAME LIKE 'S%';
++------+-------+-------+--------+--------+
+| Pno  | PNAME | COLOR | WEIGHT | CITY   |
++------+-------+-------+--------+--------+
+| P3   | Screw | Blue  |     14 | London |
++------+-------+-------+--------+--------+
+1 row in set (0.00 sec)
+
+6. Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+
+mysql> SELECT *
+    -> FROM S
+    -> WHERE CITY LIKE 'L%';
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S4   | Clark |     20 | London |
++------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+7. Display all the Projects, with the third letter in JNAME as ‘n’.  
+
+mysql> SELECT *
+    -> FROM J
+    -> WHERE JNAME LIKE '__n%';
++------+---------+--------+
+| Jno  | JNAME   | CITY   |
++------+---------+--------+
+| J4   | Console | Athens |
++------+---------+--------+
+1 row in set (0.00 sec)

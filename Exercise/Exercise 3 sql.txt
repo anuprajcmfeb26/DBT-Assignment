@@ -1,0 +1,144 @@
+1. Display all the Supplier names with the initial letter capital.
+
+mysql> SELECT CONCAT(UPPER(LEFT(Sname,1)), LOWER(SUBSTRING(Sname,2)))
+    -> FROM S;
++---------------------------------------------------------+
+| CONCAT(UPPER(LEFT(Sname,1)), LOWER(SUBSTRING(Sname,2))) |
++---------------------------------------------------------+
+| Smith                                                   |
+| Jones                                                   |
+| Blake                                                   |
+| Clark                                                   |
+| Adams                                                   |
++---------------------------------------------------------+
+
+2. Display all the Supplier names in upper case.
+
+mysql> SELECT UPPER(Sname)
+    -> FROM S;
++--------------+
+| UPPER(Sname) |
++--------------+
+| SMITH        |
+| JONES        |
+| BLAKE        |
+| CLARK        |
+| ADAMS        |
++--------------+
+5 rows in set (0.00 sec)
+
+3. Display all the Supplier names in lower case.   
+
+mysql> SELECT LOWER(Sname)
+    -> FROM S;
++--------------+
+| LOWER(Sname) |
++--------------+
+| smith        |
+| jones        |
+| blake        |
+| clark        |
+| adams        |
++--------------+
+5 rows in set (0.00 sec)
+
+4. Display all the Supplier names padded to 25 characters, with spaces on the left. 
+
+mysql> SELECT LPAD(Sname, 25, ' ')
+    -> FROM S;
++---------------------------+
+| LPAD(Sname, 25, ' ')      |
++---------------------------+
+|                     Smith |
+|                     Jones |
+|                     Blake |
+|                     Clark |
+|                     Adams |
++---------------------------+
+
+5. Display all the Supplier names (with ‘la’ replaced by ‘ro’).     
+HINT: REPLACE.  
+
+mysql> SELECT REPLACE(Sname, 'la', 'ro')
+    -> FROM S;
++----------------------------+
+| REPLACE(Sname, 'la', 'ro') |
++----------------------------+
+| Smith                      |
+| Jones                      |
+| Broke                      |
+| Crork                      |
+| Adams                      |
++----------------------------+
+
+6. Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced 
+with ‘o’.
+
+mysql> SELECT REPLACE(REPLACE(Sname,'l','r'),'a','o')
+    -> FROM S;
++-----------------------------------------+
+| REPLACE(REPLACE(Sname,'l','r'),'a','o') |
++-----------------------------------------+
+| Smith                                   |
+| Jones                                   |
+| Broke                                   |
+| Crork                                   |
+| Adoms                                   |
++-----------------------------------------+
+
+7. Display the Supplier names and the lengths of the names.
+
+mysql> SELECT Sname, LENGTH(Sname)
+    -> FROM S;
++-------+---------------+
+| Sname | LENGTH(Sname) |
++-------+---------------+
+| Smith |             5 |
+| Jones |             5 |
+| Blake |             5 |
+| Clark |             5 |
+| Adams |             5 |
++-------+---------------+
+
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+
+mysql> SELECT Sname
+    -> FROM S
+    -> WHERE SOUNDEX(Sname) = SOUNDEX('BLOKE');
++-------+
+| Sname |
++-------+
+| Blake |
++-------+
+
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+
+mysql> SELECT Sname,
+    -> CASE Status
+    ->     WHEN 10 THEN 'Ten'
+    ->     WHEN 20 THEN 'Twenty'
+    ->     WHEN 30 THEN 'Thirty'
+    -> END AS Status_Name
+    -> FROM S;
++-------+-------------+
+| Sname | Status_Name |
++-------+-------------+
+| Smith | Twenty      |
+| Jones | Ten         |
+| Blake | Thirty      |
+| Clark | Twenty      |
+| Adams | Thirty      |
++-------+-------------+
+
+10. Display the current day (e.g. Thursday). 
+
+mysql> SELECT DAYNAME(CURDATE());
++--------------------+
+| DAYNAME(CURDATE()) |
++--------------------+
+| Friday             |
++--------------------+
+
+
+
+

@@ -1,0 +1,30 @@
+1) Write a command that will enable a user to pull orders grouped by date out of the 
+Orders table quickly. 
+
+mysql> CREATE INDEX idx_orders_odate
+    -> ON ORDERS (ODATE);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+2) If the Orders table has already been created, how can you force the onum field to 
+be unique (assume all current values are unique)? 
+
+mysql> ALTER TABLE ORDERS
+    -> ADD CONSTRAINT unique_onum UNIQUE (ONUM);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+3) Create an index that would permit each salesperson to retrieve his or her orders 
+grouped by date quickly. 
+
+mysql> CREATE INDEX idx_snum_odate
+    -> ON ORDERS (SNUM, ODATE);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+4) Let us assume that each salesperson is to have only one customer of a given 
+rating, and that this is currently the case. Enter a command that enforces it. 
+
+mysql> ALTER TABLE CUSTOMERS
+    -> ADD CONSTRAINT unique_snum_rating UNIQUE (SNUM, RATING);
+Query OK, 0 rows affected (0.08 sec)

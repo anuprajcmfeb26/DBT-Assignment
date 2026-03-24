@@ -1,0 +1,18 @@
+1) Which field of the Customers table is the primary key?
+
+The primary key of the Customers table is Cnum (Customer Number) because it uniquely identifies each customer.
+
+2) What is the 4th column of the Customers table?
+
+The 4th column of the Customers table is City.
+
+3) What is another word for row? For column?
+
+Another word for row is record.
+
+Another word for column is field.
+
+4) Why isn’t it possible to see the first five rows of a table?
+
+Because tables in a relational database do not have a fixed order of rows.
+Rows can appear in any order unless we use an ORDER BY clause in a query. 

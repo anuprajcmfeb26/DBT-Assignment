@@ -1,0 +1,156 @@
+1. Create the table SEMP with the following structure.
+2. Create the table SDEPT with the following structure.
+3. Insert into the SDEPT table the following values
+4. Insert into the SEMP table the following values
+
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:-
+5. Display all the data from the S table. 
+
+mysql> SELECT * FROM S;
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S4   | Clark |     20 | London |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+6. Display only the S# and SNAME fields from the S table.
+
+mysql> SELECT Sno, SNAME
+    -> FROM S;
++------+-------+
+| Sno  | SNAME |
++------+-------+
+| S1   | Smith |
+| S2   | Jones |
+| S3   | Blake |
+| S4   | Clark |
+| S5   | Adams |
++------+-------+
+5 rows in set (0.00 sec)
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”. 
+
+mysql> SELECT PNAME, COLOR
+    -> FROM P
+    -> WHERE CITY = 'London';
++-------+-------+
+| PNAME | COLOR |
++-------+-------+
+| Nut   | Red   |
+| Screw | Blue  |
+| Cog   | Blue  |
++-------+-------+
+3 rows in set (0.00 sec)
+
+8. Display all the Suppliers from London. 
+
+mysql> SELECT *
+    -> FROM S
+    -> WHERE CITY = 'London';
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S4   | Clark |     20 | London |
++------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+9. Display all the Suppliers from Paris or Athens. 
+
+SELECT *
+FROM S
+WHERE CITY = 'Paris'
+OR CITY = 'Athens';
+
+10.  Display all the Projects in Athens. 
+
+mysql> SELECT *
+    -> FROM J
+    -> WHERE CITY = 'Athens';
++------+---------+--------+
+| Jno  | JNAME   | CITY   |
++------+---------+--------+
+| J3   | OCR     | Athens |
+| J4   | Console | Athens |
++------+---------+--------+
+2 rows in set (0.00 sec)
+
+11.  Display all the Partnames with the weight between 12 and 14 (inclusive of both). 
+
+mysql> SELECT PNAME
+    -> FROM P
+    -> WHERE WEIGHT BETWEEN 12 AND 14;
++-------+
+| PNAME |
++-------+
+| Nut   |
+| Screw |
+| Cam   |
++-------+
+3 rows in set (0.04 sec)
+
+12. Display all the Suppliers with a Status greater than or equal to 20.
+
+mysql> SELECT *
+    -> FROM S
+    -> WHERE STATUS >= 20;
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | Smith |     20 | London |
+| S3   | Blake |     30 | Paris  |
+| S4   | Clark |     20 | London |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+4 rows in set (0.00 sec)
+
+13. Display all the Suppliers except the Suppliers from London.
+
+mysql> SELECT *
+    -> FROM S
+    -> WHERE CITY <> 'London';
++------+-------+--------+--------+
+| SNO  | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S2   | Jones |     10 | Paris  |
+| S3   | Blake |     30 | Paris  |
+| S5   | Adams |     30 | Athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+14. Display only the Cities from where the Suppliers come from. 
+
+mysql> SELECT DISTINCT CITY
+    -> FROM S;
++--------+
+| CITY   |
++--------+
+| London |
+| Paris  |
+| Athens |
++--------+
+3 rows in set (0.00 sec)
+
+15.  Assuming that the Part Weight is in GRAMS, display the same in 
+MILLIGRAMS and KILOGRAMS. 
+
+mysql> SELECT PNAME,
+    ->        WEIGHT AS GRAMS,
+    ->        WEIGHT * 1000 AS MILLIGRAMS,
+    ->        WEIGHT / 1000 AS KILOGRAMS
+    -> FROM P;
++-------+-------+------------+-----------+
+| PNAME | GRAMS | MILLIGRAMS | KILOGRAMS |
++-------+-------+------------+-----------+
+| Nut   |    12 |      12000 |    0.0120 |
+| Bolt  |    17 |      17000 |    0.0170 |
+| Screw |    14 |      14000 |    0.0140 |
+| Cam   |    12 |      12000 |    0.0120 |
+| Cog   |    19 |      19000 |    0.0190 |
++-------+-------+------------+-----------+
+5 rows in set (0.04 sec)

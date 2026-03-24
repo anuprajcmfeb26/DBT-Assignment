@@ -1,0 +1,33 @@
+1) Create a table called Cityorders. This will contain the same onum, amt and snum 
+fields as the Orders table, and the same cnum and city fields as the Customers 
+table, so that each customer’s order will be entered into this table along with his 
+or her city. Onum will be the primary key of Cityorders. All of the fields in 
+Cityorders will be constrained to match the Customers and Orders tables. Assume 
+the parent keys in these tables already have the proper constraints. 
+
+mysql> CREATE TABLE CITYORDERS (
+    -> ONUM INT PRIMARY KEY,
+    -> AMT FLOAT(7,2),
+    -> SNUM INT,
+    -> CNUM INT,
+    -> CITY VARCHAR(10),
+    ->
+    -> FOREIGN KEY (ONUM) REFERENCES ORDERS1(ONUM),
+    -> FOREIGN KEY (SNUM) REFERENCES SALESPEOPLE1(SNUM),
+    -> FOREIGN KEY (CNUM) REFERENCES CUSTOMERS(CNUM)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.09 sec)
+
+2) Redefine the Orders table as follows:- add a new column called prev, which will 
+identify, for each order, the onum of the previous order for that current customer. 
+Implement this with a foreign key referring to the Orders table itself. The foreign 
+key should refer as well to the cnum of the customer, providing a definite 
+enforced link between the current order and the one referenced. 
+
+ALTER TABLE ORDERS1
+ADD UNIQUE (ONUM, CNUM);
+
+ALTER TABLE ORDERS1
+ADD CONSTRAINT fk_prev_order
+FOREIGN KEY (PREV, CNUM)
+REFERENCES ORDERS1(ONUM, CNUM);

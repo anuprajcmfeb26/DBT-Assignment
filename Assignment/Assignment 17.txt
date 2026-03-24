@@ -1,0 +1,36 @@
+1) Create the Orders table so that all onum values as well as all combinations of 
+cnum and snum are different from one another, and so that NULL values are 
+excluded from the date field. 
+
+CREATE TABLE ORDERS1 (
+    ONUM INT(4) UNIQUE,
+    AMT FLOAT(7,2),
+    ODATE DATE NOT NULL,
+    CNUM INT(4),
+    SNUM INT(4),
+    UNIQUE (CNUM, SNUM)
+);
+
+2) Create the Salespeople table so that the default commission is 10% with no 
+NULLS permitted, snum is the primary key, and all names fall alphabetically 
+between A and M, inclusive (assume all names will be uppercase). 
+
+CREATE TABLE SALESPEOPLE1 (
+    SNUM INT(4) PRIMARY KEY,
+    SNAME VARCHAR(10) CHECK (SNAME BETWEEN 'A' AND 'MZZZZ'),
+    CITY VARCHAR(10),
+    COMM FLOAT(3,2) NOT NULL DEFAULT 0.10
+);
+
+3) Create the Orders table, making sure that the onum is greater than the cnum, and 
+the cnum is greater that the snum. Allow no NULLS in any of these three fields. 
+
+CREATE TABLE ORDERS2 (
+    ONUM INT(4) NOT NULL,
+    AMT FLOAT(7,2),
+    ODATE DATE,
+    CNUM INT(4) NOT NULL,
+    SNUM INT(4) NOT NULL,
+    CHECK (ONUM > CNUM),
+    CHECK (CNUM > SNUM)
+);
